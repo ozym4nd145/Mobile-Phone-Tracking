@@ -6,6 +6,11 @@ public class Myset
         objectSet = new LinkedList();
     }
 
+    public Object Search(Object o)
+    {
+        return objectSet.Search(o).data;
+    }
+
     public int size()
     {
         return objectSet.size();
@@ -21,16 +26,28 @@ public class Myset
         return (objectSet.Search(o)!=null);
     }
 
-    public void Insert(Object o)
+    public void Insert(Object o) throws Exception
     {
         if (!IsMember(o))
         {
             objectSet.Add(o);
         }
+        else
+        {
+            throw new Exception();
+        }
     }
-    public void Delete(Object o)
+    public void Delete(Object o) throws Exception
     {
-        objectSet.Remove(o);
+        LinkedList.Node delNode = objectSet.Search(o);
+        if(delNode != null)
+        {
+            objectSet.Remove(delNode);
+        }
+        else
+        {
+            throw new Exception();
+        }
     }
 
     public Myset Union(Myset a)
@@ -39,13 +56,27 @@ public class Myset
         LinkedList.Node itr = objectSet.Head();
         while(itr != null)
         {
-            unionSet.Insert(itr.data);
+            try
+            {
+                unionSet.Insert(itr.data);
+            }
+            catch(Exception e)
+            {
+
+            }
             itr = itr.next;
         }
         itr = a.objectSet.Head();
         while(itr != null)
         {
-            unionSet.Insert(itr.data);
+            try
+            {
+                unionSet.Insert(itr.data);
+            }
+            catch(Exception e)
+            {
+
+            }
             itr = itr.next;
         }
         return unionSet;
@@ -53,17 +84,21 @@ public class Myset
 
     public Myset Intersection (Myset a)
     {
-        Myset unionSet = new Myset();
+        Myset interSet = new Myset();
         LinkedList.Node itr = objectSet.Head();
         while(itr != null)
         {
-            if(a.IsMember(itr.data))
+            try
             {
-                unionSet.Insert(itr.data);
+                interSet.Insert(itr.data);
+            }
+            catch(Exception e)
+            {
+
             }
             itr = itr.next;
         }
-        return unionSet;
+        return interSet;
     }
 
     public String toString()
@@ -73,30 +108,37 @@ public class Myset
 
     public static void main(String[] args)
     {
-        Myset a = new Myset();
-        System.out.println(a.IsEmpty());
-        a.Insert(1);
-        a.Insert(2);
-        a.Insert(3);
-        a.Insert(4);
-        a.Insert(5);
-        System.out.println(a.IsEmpty());
+        try
+        {
+            Myset a = new Myset();
+            System.out.println(a.IsEmpty());
+            a.Insert(1);
+            a.Insert(2);
+            a.Insert(3);
+            a.Insert(4);
+            a.Insert(5);
+            System.out.println(a.IsEmpty());
 
-        Myset b = new Myset();
-        b.Insert(4);
-        b.Insert(3);
-        b.Insert(0);
-        b.Insert(9);
-        b.Insert(7);
-        b.Insert(-1);
-        System.out.println(a.IsMember(1));
-        System.out.println(a.IsMember(7));
-        System.out.println(a);
-        a.Delete(3);
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(a.Union(b));
-        System.out.println(a.Intersection(b));
+            Myset b = new Myset();
+            b.Insert(4);
+            b.Insert(3);
+            b.Insert(0);
+            b.Insert(9);
+            b.Insert(7);
+            b.Insert(-1);
+            System.out.println(a.IsMember(1));
+            System.out.println(a.IsMember(7));
+            System.out.println(a);
+            a.Delete(3);
+            System.out.println(a);
+            System.out.println(b);
+            System.out.println(a.Union(b));
+            System.out.println(a.Intersection(b));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Except");
+        }
     }
 
 }
@@ -128,9 +170,14 @@ class LinkedList
     {
         String str= "";
         Node itr = head;
-        while(itr != null)
+        if(itr != null)
         {
             str = str+itr.data.toString();
+            itr = itr.next;
+        }
+        while(itr != null)
+        {
+            str = str+", "+itr.data.toString();
             itr = itr.next;
         }
         return str;
@@ -203,19 +250,6 @@ class LinkedList
             }
         }
         return node.next;
-    }
-
-    public void Remove(Object o)
-    {
-        Node removeNode = Search(o);
-        if(removeNode == null)
-        {
-            throw new IllegalStateException();
-        }
-        else
-        {
-            Remove(removeNode);
-        }
     }
 
     public Object Remove()

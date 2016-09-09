@@ -1,0 +1,80 @@
+javac Exchange.java Myset.java MobilePhone.java assn2checker.java Exceptions.java
+java assn2checker
+addExchange 0 1
+addExchange 0 2
+addExchange 0 3
+addExchange 0 4
+addExchange 0 5
+queryNthChild 0 0 : 1
+queryNthChild 0 5 : Index Out of Range
+queryNthChild 4 0 : Index Out of Range
+queryNthChild 4 2 : Index Out of Range
+queryMobilePhoneSet 0 : 
+queryMobilePhoneSet 1 : 
+queryMobilePhoneSet 5 : 
+addExchange 1 6
+addExchange 2 7
+addExchange 2 8
+addExchange 3 9
+addExchange 4 10
+addExchange 5 11
+addExchange 5 12
+queryNthChild 8 0 : Index Out of Range
+queryNthChild 11 5 : Index Out of Range
+queryNthChild 12 3 : Index Out of Range
+queryMobilePhoneSet 8 : 
+queryMobilePhoneSet 11 : 
+queryMobilePhoneSet 12 : 
+switchOnMobile 656 6
+switchOnMobile 657 6
+switchOnMobile 658 7
+switchOnMobile 659 7
+switchOnMobile 660 8
+switchOnMobile 661 8
+switchOnMobile 662 9
+switchOnMobile 663 9
+switchOnMobile 664 10
+switchOnMobile 665 10
+switchOnMobile 666 11
+switchOnMobile 667 11
+switchOnMobile 668 12
+switchOnMobile 669 12
+queryNthChild 0 6 : Index Out of Range
+queryNthChild 3 11 : Index Out of Range
+queryMobilePhoneSet 6 : 656, 657
+queryMobilePhoneSet 7 : 658, 659
+queryMobilePhoneSet 8 : 660, 661
+queryMobilePhoneSet 9 : 662, 663
+queryMobilePhoneSet 10 : 664, 665
+queryMobilePhoneSet 11 : 666, 667
+queryMobilePhoneSet 12 : 668, 669
+queryMobilePhoneSet 1 : 656, 657
+queryMobilePhoneSet 2 : 658, 659, 660, 661
+queryMobilePhoneSet 3 : 662, 663
+queryMobilePhoneSet 4 : 664, 665
+queryMobilePhoneSet 5 : 666, 667, 668, 669
+queryMobilePhoneSet 0 : 656, 657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669
+switchOffMobile 657
+switchOffMobile 659
+switchOffMobile 661
+switchOffMobile 663
+switchOffMobile 665
+switchOffMobile 667
+switchOffMobile 669
+switchOffMobile 700
+No Such Mobile Phone
+switchOffMobile 100000
+No Such Mobile Phone
+queryMobilePhoneSet 6 : 656
+queryMobilePhoneSet 7 : 658
+queryMobilePhoneSet 8 : 660
+queryMobilePhoneSet 9 : 662
+queryMobilePhoneSet 10 : 664
+queryMobilePhoneSet 11 : 666
+queryMobilePhoneSet 12 : 668
+queryMobilePhoneSet 1 : 656
+queryMobilePhoneSet 2 : 658, 660
+queryMobilePhoneSet 3 : 662
+queryMobilePhoneSet 4 : 664
+queryMobilePhoneSet 5 : 666, 668
+queryMobilePhoneSet 0 : 656, 658, 660, 662, 664, 666, 668

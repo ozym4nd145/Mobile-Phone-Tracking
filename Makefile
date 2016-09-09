@@ -1,6 +1,6 @@
 all:
-	javac Exchange.java Myset.java MobilePhone.java assn2checker.java
-	java assn2checker
+	javac RoutingMapTree.java Myset.java assn3checker.java Exceptions.java
+	java assn3checker
 
 clean:
 	rm *.class

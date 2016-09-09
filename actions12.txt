@@ -1,0 +1,76 @@
+addExchange 0 1
+addExchange 0 2
+addExchange 0 3
+addExchange 0 4
+addExchange 0 5
+queryNthChild 0 0
+queryNthChild 0 5
+queryNthChild 4 0
+queryNthChild 4 2
+queryMobilePhoneSet 0
+queryMobilePhoneSet 1
+queryMobilePhoneSet 5
+addExchange 1 6
+addExchange 2 7
+addExchange 2 8
+addExchange 3 9
+addExchange 4 10
+addExchange 5 11
+addExchange 5 12
+queryNthChild 8 0
+queryNthChild 11 5
+queryNthChild 12 3
+queryMobilePhoneSet 8
+queryMobilePhoneSet 11
+queryMobilePhoneSet 12
+switchOnMobile 656 6
+switchOnMobile 657 6
+switchOnMobile 658 7
+switchOnMobile 659 7
+switchOnMobile 660 8
+switchOnMobile 661 8
+switchOnMobile 662 9
+switchOnMobile 663 9
+switchOnMobile 664 10
+switchOnMobile 665 10
+switchOnMobile 666 11
+switchOnMobile 667 11
+switchOnMobile 668 12
+switchOnMobile 669 12
+queryNthChild 0 6
+queryNthChild 3 11
+queryMobilePhoneSet 6
+queryMobilePhoneSet 7
+queryMobilePhoneSet 8
+queryMobilePhoneSet 9
+queryMobilePhoneSet 10
+queryMobilePhoneSet 11
+queryMobilePhoneSet 12
+queryMobilePhoneSet 1
+queryMobilePhoneSet 2
+queryMobilePhoneSet 3
+queryMobilePhoneSet 4
+queryMobilePhoneSet 5
+queryMobilePhoneSet 0
+switchOffMobile 657
+switchOffMobile 659
+switchOffMobile 661
+switchOffMobile 663
+switchOffMobile 665
+switchOffMobile 667
+switchOffMobile 669
+switchOffMobile 700
+switchOffMobile 100000
+queryMobilePhoneSet 6
+queryMobilePhoneSet 7
+queryMobilePhoneSet 8
+queryMobilePhoneSet 9
+queryMobilePhoneSet 10
+queryMobilePhoneSet 11
+queryMobilePhoneSet 12
+queryMobilePhoneSet 1
+queryMobilePhoneSet 2
+queryMobilePhoneSet 3
+queryMobilePhoneSet 4
+queryMobilePhoneSet 5
+queryMobilePhoneSet 0

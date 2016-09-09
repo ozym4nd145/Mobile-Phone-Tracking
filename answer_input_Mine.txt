@@ -1,0 +1,103 @@
+addExchange 0 1
+addExchange 0 2
+queryNthChild 0 0
+1
+queryNthChild 0 2
+Error - Index Out of Range
+addExchange 1 4.2
+Error - Input Format Incorrect
+addExchange 2 amma
+Error - Input Format Incorrect
+addExchange 1 4
+addExchange 1 5
+addExchange 2 6
+addExchange 2 7
+addExchange 2 8
+addExchange 0 3
+addExchange 3 9
+queryNthChild 2 0
+6
+queryNthChild 3 0
+9
+queryMobilePhoneSet 4
+
+queryMobilePhoneSet 1
+
+queryMobilePhoneSet 2
+
+queryMobilePhoneSet 3
+
+queryMobilePhoneSet 0
+
+switchOnMobile 989 4
+queryMobilePhoneSet 4
+989
+queryMobilePhoneSet 1
+989
+queryMobilePhoneSet 2
+
+queryMobilePhoneSet 3
+
+queryMobilePhoneSet 0
+989
+switchOffMobile 989
+queryMobilePhoneSet 4
+
+queryMobilePhoneSet 1
+
+queryMobilePhoneSet 2
+
+queryMobilePhoneSet 3
+
+queryMobilePhoneSet 0
+
+switchOnMobile 989 6
+queryMobilePhoneSet 4
+
+queryMobilePhoneSet 6
+989
+queryMobilePhoneSet 8
+
+queryMobilePhoneSet 1
+
+queryMobilePhoneSet 2
+989
+queryMobilePhoneSet 3
+
+queryMobilePhoneSet 0
+989
+switchOnMobile 989 8
+Error - Mobile Phone Already On
+queryMobilePhoneSet 4
+
+queryMobilePhoneSet 6
+989
+queryMobilePhoneSet 8
+
+queryMobilePhoneSet 1
+
+queryMobilePhoneSet 2
+989
+queryMobilePhoneSet 3
+
+queryMobilePhoneSet 0
+989
+switchOnMobile 876 4
+queryMobilePhoneSet 4
+876
+queryMobilePhoneSet 1
+876
+switchOnMobile 656 5
+switchOnMobile 54 5
+queryMobilePhoneSet 1
+876, 656, 54
+switchOffMobile 656
+queryMobilePhoneSet 1
+876, 54
+switchOnMobile 213 6
+switchOnMobile 568 7
+switchOnMobile 897 8
+switchOnMobile 295 8
+switchOnMobile 346 9
+queryMobilePhoneSet 0
+989, 876, 54, 213, 568, 897, 295, 346

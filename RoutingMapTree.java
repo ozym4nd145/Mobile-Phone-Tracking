@@ -170,6 +170,14 @@ public class RoutingMapTree
                     // System.out.println(exchangeA);
                     exchangeA.addChild(exchangeB);
                 }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
                 catch(Exception e)
                 {
                     System.out.println(e.getMessage());
@@ -197,6 +205,14 @@ public class RoutingMapTree
                         // System.out.println("Creation state - "+newMobile.getId()+ " - "+newMobile.status());
                     }
                 }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
                 catch (Exception e)
                 {
                     System.out.println(e.getMessage());
@@ -214,6 +230,14 @@ public class RoutingMapTree
                     // System.out.println("Search state - "+mobile.getId()+ " - "+mobile.status());
                     switchOff(mobile);
                 }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
                 catch(Exception e)
                 {
                     System.out.println(e.getMessage());
@@ -230,6 +254,14 @@ public class RoutingMapTree
                         throw new NoExchange("Error - No such Exchange");
                     }
                     System.out.println(exchange.child(nthChild).getId());
+                }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
                 }
                 catch(Exception e)
                 {
@@ -261,6 +293,14 @@ public class RoutingMapTree
                     String set = exchange.residentSet().toString();
                     System.out.println(set);
                 }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
                 catch(Exception e)
                 {
                     System.out.println(e.getMessage());
@@ -272,6 +312,14 @@ public class RoutingMapTree
                 {
                     MobilePhone mobile = root.searchMobile(message.nextInt());
                     System.out.println(findPhone(mobile).getId());
+                }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
                 }
                 catch(Exception e)
                 {
@@ -286,6 +334,14 @@ public class RoutingMapTree
                     Exchange b = SearchExchange(message.nextInt());
                     System.out.println(lowestRouter(a,b));
                 }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
                 catch(Exception e)
                 {
                     System.out.println(e.getMessage());
@@ -299,6 +355,14 @@ public class RoutingMapTree
                     MobilePhone b = root.searchMobile(message.nextInt());
                     System.out.println(routeCall(a,b));
                 }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
                 catch(Exception e)
                 {
                     System.out.println(e.getMessage());
@@ -311,6 +375,14 @@ public class RoutingMapTree
                     MobilePhone a = root.searchMobile(message.nextInt());
                     Exchange b = SearchExchange(message.nextInt());
                     movePhone(a,b);
+                }
+                catch (InputMismatchException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
+                }
+                catch(NoSuchElementException e)
+                {
+                    System.out.println("Error - Input Format Incorrect");
                 }
                 catch(Exception e)
                 {

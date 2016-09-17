@@ -37,3 +37,10 @@ queryFindCallPath 876 989
 switchOffMobile 989
 queryFindCallPath 876 989
 queryFindCallPath 876 346
+queryMobilePhoneSet 0
+switchOnMobile 656 9
+queryMobilePhoneSet 1
+queryMobilePhoneSet 3
+queryMobilePhoneSet 0
+switchOnMobile 989 7
+queryMobilePhoneSet 0

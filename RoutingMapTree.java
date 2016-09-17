@@ -63,11 +63,22 @@ public class RoutingMapTree
         {
             Exchange base = a.location();
             a.switchOff();
-            while(base != null)
-            {
-                base.deregisterMobile(a);
-                base = base.parent();
-            }
+            // Not removing the phone for now
+            // while(base != null)
+            // {
+            //     base.deregisterMobile(a);
+            //     base = base.parent();
+            // }
+        }
+    }
+
+    public void removeFromTree (MobilePhone a) throws NotRegistered
+    {
+        Exchange base = a.location();
+        while(base != null)
+        {
+            base.deregisterMobile(a);
+            base = base.parent();
         }
     }
 
@@ -150,6 +161,7 @@ public class RoutingMapTree
         {
             throw new NoExchange("Error - Exchange not Base Station");
         }
+        removeFromTree(a);
         switchOff(a);
         switchOn(a,b);
     }
@@ -163,237 +175,152 @@ public class RoutingMapTree
         {
             if(action.equals("addExchange"))
             {
-                try
-                {
-                    Exchange exchangeA = SearchExchange(message.nextInt());
-                    Exchange exchangeB = new Exchange(message.nextInt());
-                    // System.out.println(exchangeA);
-                    exchangeA.addChild(exchangeB);
-                }
-                catch (InputMismatchException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
-                }
+                Exchange exchangeA = SearchExchange(message.nextInt());
+                Exchange exchangeB = new Exchange(message.nextInt());
+                // System.out.println(exchangeA);
+                exchangeA.addChild(exchangeB);
             }
             else if(action.equals("switchOnMobile"))
             {
-                try
+                int mobileIdentifier = message.nextInt();
+                Exchange exchange = SearchExchange(message.nextInt());
+                if(exchange == null)
                 {
-                    int mobileIdentifier = message.nextInt();
-                    Exchange exchange = SearchExchange(message.nextInt());
-                    if(exchange == null)
+                    throw new NoExchange ("Error - Exchange not present");
+                }
+                else
+                {
+                    MobilePhone newMobile = root.searchMobile(mobileIdentifier);
+                    // System.out.println("lalalala");
+                    if(newMobile != null)
                     {
-                        throw new NoExchange ("Error - Exchange not present");
+                        if(newMobile.status())
+                        {
+                            // System.out.println("kakakkakak");
+                            throw new AlreadyOn("Error - Mobile Phone Already On");
+                        }
+                        else
+                        {
+                            // System.out.println("chahahahaha");
+                            removeFromTree(newMobile);
+                        }
                     }
                     else
                     {
-                        MobilePhone newMobile = root.searchMobile(mobileIdentifier);
-                        if(newMobile != null)
-                        {
-                            throw new AlreadyOn("Error - Mobile Phone Already On");
-                        }
                         newMobile = new MobilePhone(mobileIdentifier);
-                        switchOn(newMobile,exchange);
-                        // System.out.println("Creation state - "+newMobile.getId()+ " - "+newMobile.status());
                     }
-                }
-                catch (InputMismatchException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch (Exception e)
-                {
-                    System.out.println(e.getMessage());
+                    switchOn(newMobile,exchange);
+                    // System.out.println("Creation state - "+newMobile.getId()+ " - "+newMobile.status());
                 }
             }
             else if(action.equals("switchOffMobile"))
             {
-                try
+                MobilePhone mobile = root.searchMobile(message.nextInt());
+                if(mobile == null)
                 {
-                    MobilePhone mobile = root.searchMobile(message.nextInt());
-                    if(mobile == null)
-                    {
-                        throw new NoMobilePhone("Error - No Such Mobile Phone");
-                    }
-                    // System.out.println("Search state - "+mobile.getId()+ " - "+mobile.status());
-                    switchOff(mobile);
+                    throw new NoMobilePhone("Error - No Such Mobile Phone");
                 }
-                catch (InputMismatchException e)
+                else if(!mobile.status())
                 {
-                    System.out.println("Error - Input Format Incorrect");
+                    throw new AlreadyOff("Error - Mobile Phone is Off");
                 }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
-                }
+                // System.out.println("Search state - "+mobile.getId()+ " - "+mobile.status());
+                switchOff(mobile);
             }
             else if(action.equals("queryNthChild"))
             {
-                try
+                Exchange exchange = SearchExchange(message.nextInt());
+                int nthChild = message.nextInt();
+                if(exchange == null)
                 {
-                    Exchange exchange = SearchExchange(message.nextInt());
-                    int nthChild = message.nextInt();
-                    if(exchange == null)
-                    {
-                        throw new NoExchange("Error - No such Exchange");
-                    }
-                    System.out.println(exchange.child(nthChild).getId());
+                    throw new NoExchange("Error - No such Exchange");
                 }
-                catch (InputMismatchException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
-                }
+                System.out.println(exchange.child(nthChild).getId());
             }
             else if(action.equals("queryMobilePhoneSet"))
             {
-                try
+                String mobileString = "";
+                Exchange exchange = SearchExchange(message.nextInt());
+                if(exchange == null)
                 {
-                    String mobileString = "";
-                    Exchange exchange = SearchExchange(message.nextInt());
-                    if(exchange == null)
-                    {
-                        throw new NoExchange("Error - No Such Exchange");
-                    }
-                    // LinkedList mobileSet = exchange.residentSet().objectSet;
-                    // LinkedList.Node itr = mobileSet.Head();
-                    // if(itr != null)
-                    // {
-                    //     mobileString = ""+((MobilePhone)itr.data).getId();
-                    //     itr = itr.next;
-                    // }
-                    // while(itr != null)
-                    // {
-                    //     mobileString = mobileString + ", " + ((MobilePhone)itr.data).getId();
-                    //     itr = itr.next;
-                    // }
-                    String set = exchange.residentSet().toString();
-                    System.out.println(set);
+                    throw new NoExchange("Error - No Such Exchange");
                 }
-                catch (InputMismatchException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
-                }
+                // LinkedList mobileSet = exchange.residentSet().objectSet;
+                // LinkedList.Node itr = mobileSet.Head();
+                // if(itr != null)
+                // {
+                //     mobileString = ""+((MobilePhone)itr.data).getId();
+                //     itr = itr.next;
+                // }
+                // while(itr != null)
+                // {
+                //     mobileString = mobileString + ", " + ((MobilePhone)itr.data).getId();
+                //     itr = itr.next;
+                // }
+                String set = exchange.residentSet().toString();
+                System.out.println(set);
+
             }
             else if(action.equals("queryFindPhone"))
             {
-                try
+                MobilePhone mobile = root.searchMobile(message.nextInt());
+                if(mobile == null)
                 {
-                    MobilePhone mobile = root.searchMobile(message.nextInt());
+                    throw new NotRegistered("Error - MobilePhone not Registered");
+                }
+                if(mobile.status())
+                {
                     System.out.println(findPhone(mobile).getId());
                 }
-                catch (InputMismatchException e)
+                else
                 {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
+                    throw new AlreadyOff("Error - Mobile Phone is Off");
                 }
             }
             else if(action.equals("queryLowestRouter"))
             {
-                try
-                {
-                    Exchange a = SearchExchange(message.nextInt());
-                    Exchange b = SearchExchange(message.nextInt());
-                    System.out.println(lowestRouter(a,b));
-                }
-                catch (InputMismatchException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
-                }
+                Exchange a = SearchExchange(message.nextInt());
+                Exchange b = SearchExchange(message.nextInt());
+                System.out.println(lowestRouter(a,b));
             }
             else if(action.equals("queryFindCallPath"))
             {
-                try
+                MobilePhone a = root.searchMobile(message.nextInt());
+                MobilePhone b = root.searchMobile(message.nextInt());
+                if(a.status() && b.status())
                 {
-                    MobilePhone a = root.searchMobile(message.nextInt());
-                    MobilePhone b = root.searchMobile(message.nextInt());
                     System.out.println(routeCall(a,b));
                 }
-                catch (InputMismatchException e)
+                else
                 {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
+                    throw new AlreadyOff("Error - Mobile Phone is Off");
                 }
             }
             else if(action.equals("movePhone"))
             {
-                try
+                MobilePhone a = root.searchMobile(message.nextInt());
+                if(a.status())
                 {
-                    MobilePhone a = root.searchMobile(message.nextInt());
                     Exchange b = SearchExchange(message.nextInt());
                     movePhone(a,b);
                 }
-                catch (InputMismatchException e)
+                else
                 {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(NoSuchElementException e)
-                {
-                    System.out.println("Error - Input Format Incorrect");
-                }
-                catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
+                    throw new AlreadyOff("Error - Mobile Phone is Off");
                 }
             }
         }
-        catch(Exception e)
+        catch (InputMismatchException e)
         {
-            // System.out.println("HHAHHAHAHAHhaah");
-            e.printStackTrace();
+            System.out.println("Error - Input Format Incorrect");
+        }
+        catch(NoSuchElementException e)
+        {
+            System.out.println("Error - Input Format Incorrect");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
         finally
         {
@@ -436,19 +363,19 @@ class MobilePhone
 
     public String toString()
     {
-        return String.valueOf(id);
-    }
-
-    public Exchange location() throws NotRegistered
-    {
         if(isOn)
         {
-            return baseStation;
+            return String.valueOf(id);
         }
         else
         {
-            throw new NotRegistered("Error - Mobile Phone not registered!");
+            return "";
         }
+    }
+
+    public Exchange location()
+    {
+        return baseStation;
     }
 
     public void setBase(Exchange base)

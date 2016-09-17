@@ -37,6 +37,7 @@ public class Myset
             throw new Exception();
         }
     }
+
     public void Delete(Object o) throws Exception
     {
         LinkedList.Node delNode = objectSet.Search(o);
@@ -169,18 +170,25 @@ class LinkedList
     public String toString()
     {
         String str= "";
+        String temp = "";
         Node itr = head;
-        if(itr != null)
-        {
-            str = str+itr.data.toString();
-            itr = itr.next;
-        }
         while(itr != null)
         {
-            str = str+", "+itr.data.toString();
+            temp = itr.data.toString();
+            if(!temp.equals(""))
+            {
+                str = str+", "+temp;
+            }
             itr = itr.next;
         }
-        return str;
+        if(str.equals(""))
+        {
+            return str;
+        }
+        else
+        {
+            return str.substring(2);
+        }
     }
 
     public Node Head()
